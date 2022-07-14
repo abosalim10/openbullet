@@ -1,0 +1,32 @@
+﻿@page "/hits"
+@using OpenBullet2.Entities
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Hits> Loc
+@attribute [Authorize(Roles = "Admin,Guest")]
+
+<div class="container-fluid">
+    <div class="row mb-2">
+        <div class="list-group list-group-horizontal">
+            <button class="btn btn-sm btn-outline-primary" @onclick="CopyHitData"><span class="oi oi-layers"></span> @Loc["CopyData"]</button>
+            <button class="btn btn-sm btn-outline-primary" @onclick="CopyHitDataCapture"><span class="oi oi-layers"></span> @Loc["CopyDataCapture"]</button>
+            <button class="btn btn-sm btn-outline-primary" @onclick="EditHit"><span class="oi oi-pencil"></span> @Loc["Edit"]</button>
+            <button class="btn btn-sm btn-outline-primary" @onclick="SendToRecheck"><span class="oi oi-action-redo"></span> @Loc["SendToRecheck"]</button>
+            <button class="btn btn-sm btn-outline-danger" @onclick="DeleteHit"><span class="oi oi-x"></span> @Loc["Delete"]</button>
+            <button class="btn btn-sm btn-outline-danger" @onclick="DeleteFiltered"><span class="oi oi-x"></span> @Loc["DeleteFiltered"]</button>
+            <button class="btn btn-sm btn-outline-danger" @onclick="DeleteDuplicates"><span class="oi oi-x"></span> @Loc["DeleteDuplicates"]</button>
+            @if (uid == -0)
+            {
+                // Only the admin can purge all hits from the DB
+                <button class="btn btn-sm btn-outline-danger" @onclick="PurgeHits"><span class="oi oi-trash"></span> @Loc["Purge"]</button>
+            }
+        </div>
+    </div>
+</div>
+
+@if (gridLoad != null && !gridLoad.IsCanceled && gridLoad.IsCompleted)
+{
+    <GridComponent @ref="gridComponent" T="HitEntity" Grid="@grid" OnRowClicked="@OnHitSelected"></GridComponent>
+}
+else
+{
+    <p><em>@Loc["Loading"]...</em></p>
+}

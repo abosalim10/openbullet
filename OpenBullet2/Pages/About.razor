@@ -1,0 +1,110 @@
+﻿@page "/about"
+@using OpenBullet2.Shared.Forms
+@inject Microsoft.Extensions.Localization.IStringLocalizer<About> Loc
+@inject IModalService Modal
+
+<h5 class="fg-fail">@Loc["Disclaimer"]</h5>
+<p class="fg-fail mb-3">@Loc["DisclaimerText"]</p>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th scope="row">@Loc["Developer"]</th>
+            <td>Ruri</td>
+        </tr>
+        <tr>
+            <th scope="row">@Loc["Collaborators"]</th>
+            <td>demiurgo, meinname</td>
+        </tr>
+        <tr>
+            <th scope="row">@Loc["AlphaTesters"]</th>
+            <td>CιdᥱR™, Flix88, kurosaki ichigo</td>
+        </tr>
+        <tr>
+            <th scope="row">@Loc["BetaTesters"]</th>
+            <td>B1rdY, Br4uN, Fairy, FFaez1267, Itamai, Laiteux, Pure, Why001, Wicha</td>
+        </tr>
+        <tr>
+            <th scope="row">@Loc["Translators"]</th>
+            <td>Br4uN (es), Choempie (nl), dEath (tr), Fairy (fr), Laiteux (fr), ManoPlayBRL (pt), meinname (de), Mr.Virtue (ru), Ruri (en, it), Ruzzlzz (ro)</td>
+        </tr>
+        <tr>
+            <th scope="row">@Loc["OfficialForum"]</th>
+            <td><a href="https://discourse.openbullet.dev/">discourse.openbullet.dev</a></td>
+        </tr>
+        <tr>
+            <th scope="row">@Loc["OfficialRepository"]</th>
+            <td><a href="https://github.com/openbullet/OpenBullet2/">github.com/openbullet/OpenBullet2</a></td>
+        </tr>
+        <tr>
+            <th scope="row">@Loc["License"]</th>
+            <td><span class="mr-3">MIT</span><button class="btn btn-sm btn-outline-primary" @onclick="ShowLicense">@Loc["Read"]</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="mb-3">
+    <a href="https://en.cryptobadges.io/donate/39yMkox6pP8tnSC7rZ5EM4nUUHgPbg1fKM">
+        <img src="https://en.cryptobadges.io/badge/small/39yMkox6pP8tnSC7rZ5EM4nUUHgPbg1fKM" alt="Donate BTC" />
+    </a>
+    <br />
+    <a href="https://en.cryptobadges.io/donate/0xc22116Bcf6c30977bEdFcc03C5B6aAe90B0fD179">
+        <img src="https://en.cryptobadges.io/badge/small/0xc22116Bcf6c30977bEdFcc03C5B6aAe90B0fD179" alt="Donate ETH" />
+    </a>
+    <br />
+    <span><b>Donate BCH: </b>qq02mrtdp454g2zdu534ndpu7jgcr3tvavyzs60m3p</span>
+</div>
+
+<h5>@Loc["DonatorsAndSupporters"]</h5>
+<div class="p-2 mb-3" style="background-color: black;">
+    <div style="color: gold;">
+        <span>FFaez1267</span><br />
+        <span>James | Lisse</span><br />
+        <span>Ikamai</span><br />
+    </div>
+    <div style="color: silver;">
+        <span>TheFiendQQ</span><br />
+        <span>Patch2201</span><br />
+        <span>Spic</span><br />
+        <span>mastercho</span><br />
+        <span>Crackdealer</span><br />
+        <span>B1rdY</span><br />
+        <span>moon.Man</span><br />
+    </div>
+    <div style="color: #cd7f32;">
+        <span>Laiteux</span><br />
+        <span>HarveyS</span><br />
+        <span>Rael</span><br />
+        <span>boggy94</span><br />
+        <span>Pegasus</span><br />
+        <span>Phantøm</span><br />
+        <span>Joey</span><br />
+        <span>dew88</span><br />
+        <span>The anti SJW</span><br />
+        <span>ManoPlayBRL</span><br />
+        <span>Barmoley</span><br />
+        <span>Kurosaki Ichigo</span><br />
+        <span>Pool</span><br />
+        <span>k4k4r0to</span><br />
+        <span>Finlay1010</span><br />
+        <span>n00biE</span><br />
+        <span>kaatil</span><br />
+        <span>Speeedyyyy</span><br />
+        <span>AccountMast3r</span><br />
+        <span>Ruzzlzz</span><br />
+        <span>Itamai</span><br />
+        <span>alexparkin</span><br />
+        <span>MadmanDev</span><br />
+        <span>Plog</span><br />
+        <span>dankmemes43</span><br />
+        <span>Fr00tl00ps | Lisse</span><br />
+    </div>
+</div>
+
+@code {
+
+    private void ShowLicense()
+    {
+        Modal.Show<License>(Loc["License"]);
+    }
+}

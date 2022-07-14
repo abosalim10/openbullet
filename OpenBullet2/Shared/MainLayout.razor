@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Components.Web.Extensions.Head
+@inject PersistentSettingsService Settings
+@inject IThemeRepository ThemeRepo
+@inherits LayoutComponentBase
+
+@if (themePath != null)
+{
+    <Link rel="stylesheet" href="@themePath" />
+}
+
+<BlazoredModal />
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <div class="content px-4">
+        @Body
+    </div>
+</div>
+
+@code {
+    private string themePath;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Settings.OpenBulletSettings.CustomizationSettings.Theme != "Default")
+            themePath = (await ThemeRepo.GetPath(Settings.OpenBulletSettings.CustomizationSettings.Theme)).Replace("wwwroot/", "");
+    }
+} 
